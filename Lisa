@@ -1,0 +1,59 @@
+import java.util.ArrayList;
+
+public class Lisa {
+private ArrayList<String>catchphrases;
+private ArrayList<String>responses;
+private ArrayList<String> questionList;
+private static int questionNum;
+private String question;
+
+public Lisa() {
+	catchphrases = new ArrayList<String>();
+	catchphrases.add("If anyone wants me, I'll be in my room!");
+	catchphrases.add("I feel like a (second name)");
+	responses= new ArrayList<String>();
+	questionNum=0;
+	question= "";
+	questionList= new ArrayList<String>();
+}
+
+
+public String askQuestion() {
+	if(questionNum<questionList.size()) {
+	question= questionList.get(questionNum);
+	questionNum++;
+	return question;
+	}
+	return getThesis();
+}
+
+public String getThesis() {
+	return "hi";
+}
+
+
+public void saveResponse(String s) {
+	responses.add(s);
+}
+
+public ArrayList<String> getCatchphrasesList() {
+	return catchphrases;
+}
+
+public ArrayList<String> getResponseList() {
+	return responses;
+}
+
+public ArrayList<String> getQuestionList(){
+	return questionList;
+}
+ 
+public int getQuestionNum() {
+	return questionNum;
+}
+
+
+
+
+	
+}
