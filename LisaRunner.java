@@ -15,26 +15,12 @@ import javax.swing.*;
 public class LisaRunner extends JFrame {
 	
 	private JTextField textbox = new JTextField();
-	
+	private Lisa lisa;
 	private JTextArea chat = new JTextArea();
 	private ImageIcon bubble;
-	public final static String PATH_PREFIX = "res/images/";
-	protected  Image getImage(String fn) {
-		Image img = null;
-		fn = PATH_PREFIX+fn;
-		try {
-			
-			img = ImageIO.read(this.getClass().getResource(fn));
 
-		} catch (IOException e) {
-			// TODO Auto-generated catch block
-			e.printStackTrace();
-		}
-		return img;
-	}
-	
 	public LisaRunner() {
-		
+		lisa= new Lisa(450,450);
 		
 		this.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		this.setVisible(true);
@@ -46,7 +32,8 @@ public class LisaRunner extends JFrame {
 			@Override
 			public void paintComponent(Graphics g) {
 				super.paintComponents(g);
-				g.drawImage(getImage("bubble.png"), 500, 200, 10, 5, null);
+				lisa.draw(g,450,450);
+				//g.drawImage(getImage("bubble.png"), 500, 200, 10, 5, null);
 			}
 		};
 		textbox.setLocation(10, 540);
@@ -63,15 +50,27 @@ public class LisaRunner extends JFrame {
 			@Override
 			public void actionPerformed(ActionEvent e) {
 				String text = textbox.getText();
-				chat.append("You: " + text + "\n");
+				/*	public final static String PATH_PREFIX = "res/images/";
+				protected  Image getImage(String fn) {
+					Image img = null;
+					fn = PATH_PREFIX+fn;
+					try {
+						
+						img = ImageIO.read(this.getClass().getResource(fn));
+
+					} catch (IOException e) {
+						// TODO Auto-generated catch block
+						e.printStackTrace();
+					}
+					return img;
+				}
+				*/		chat.append("You: " + text + "\n");
 				textbox.setText("");
 
 			}
 			
 		});
 		}
-		
-	
 	
 
 	public static void main (String[] args) {
@@ -79,5 +78,20 @@ public class LisaRunner extends JFrame {
 	}
 	
 	
-}
+	/*	public final static String PATH_PREFIX = "res/images/";
+	protected  Image getImage(String fn) {
+		Image img = null;
+		fn = PATH_PREFIX+fn;
+		try {
+			
+			img = ImageIO.read(this.getClass().getResource(fn));
 
+		} catch (IOException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+		return img;
+	}
+	*/
+	
+}
