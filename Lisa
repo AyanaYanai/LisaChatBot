@@ -1,4 +1,10 @@
+import java.awt.Graphics;
+import java.awt.Image;
+import java.io.IOException;
 import java.util.ArrayList;
+
+import javax.imageio.ImageIO;
+
 
 public class Lisa {
 private ArrayList<String>catchphrases;
@@ -6,8 +12,26 @@ private ArrayList<String>responses;
 private ArrayList<String> questionList;
 private static int questionNum;
 private String question;
+private Image imgs;
+public final static String PATH_PREFIX = "res/images/";
+int x;
+int y;
 
-public Lisa() {
+protected  Image getImage(String fn) {
+	Image img = null;
+	///fn = PATH_PREFIX+fn;
+	try {
+		
+		img = ImageIO.read(this.getClass().getResource(fn));
+
+	} catch (IOException e) {
+		// TODO Auto-generated catch block
+		e.printStackTrace();
+	}
+	return img;
+}
+
+public Lisa(int ex,int why) {
 	catchphrases = new ArrayList<String>();
 	catchphrases.add("If anyone wants me, I'll be in my room!");
 	catchphrases.add("I feel like a (second name)");
@@ -15,6 +39,9 @@ public Lisa() {
 	questionNum=0;
 	question= "";
 	questionList= new ArrayList<String>();
+	imgs=getImage("lisa1.png");
+	x=ex;
+	y= why;
 }
 
 
@@ -31,9 +58,16 @@ public String getThesis() {
 	return "hi";
 }
 
-
+public void draw(Graphics g, int x, int y) {
+	g.drawImage(imgs, x, y,null);
+	this.x=x;
+	this.y=y;
+	
+}
 public void saveResponse(String s) {
-	responses.add(s);
+	responses.add(s)
+
+;
 }
 
 public ArrayList<String> getCatchphrasesList() {
@@ -51,8 +85,6 @@ public ArrayList<String> getQuestionList(){
 public int getQuestionNum() {
 	return questionNum;
 }
-
-
 
 
 	
